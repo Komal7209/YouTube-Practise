@@ -1,48 +1,38 @@
-// 3rd variation will be either of n1 or n2 is present
-
 class Solution
 {
 public:
-    bool findPath(TreeNode *root, vector<TreeNode *> nodes, int presentNode)
+    bool findPath(TreeNode *root, vector<TreeNode *> &p, int n)
     {
-
-        if (!root)
-        {
+        if (root == NULL)
             return false;
-        }
-
-        nodes.push_back(root);
-
-        if (root->val == presentNode)
-        {
+        p.push_back(root);
+        if (root->val == n)
             return true;
-        }
 
-        if (findPath(root->left, nodes, presentNode) || findPath(root->right, nodes, presentNode))
-        {
+        if (findPath(root->left, p, n) || findPath(root->right, p, n))
             return true;
-        }
 
-        nodes.pop_back();
+        p.pop_back();
         return false;
     }
 
-    TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *node1, TreeNode *node2)
+    TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *n1, TreeNode *n2)
     {
-
         vector<TreeNode *> path1, path2;
-
-        if (findPath(root, path1, node1) == false || findPath(root, path2, node2) == false)
-        {
+        TreeNode *prev = NULL;
+        if (findPath(root, path1, n1->val) == false || findPath(root, path2, n2->val) == false)
             return NULL;
-        }
-
-        for (int i = 0; i < path1.size() - 1 && i < path2.size(); i++)
+        for (int i = 0; i < path1.size() && i < path2.size(); i++)
         {
-            if (path1[i + 1] != path2[i + 1])
-                return path1[i];
+            cout << "path1[i]"<< " " << path1[i]->val << " " << "path2[i]"<< " " << path2[i]->val << endl;
+            
+            if (path1[i] != path2[i])
+            {                        // when not equal then previous one is returned
+                return path1[i - 1]; //
+            }
+            prev = path1[i]; // when all are equal then store in prev
         }
-
-        return NULL;
+        //  return NULL;
+        return prev;
     }
 };
