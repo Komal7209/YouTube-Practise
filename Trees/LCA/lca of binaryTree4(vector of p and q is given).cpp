@@ -35,7 +35,7 @@ Explanation: The lowest common ancestor of all the nodes is the root node.
 
 
 TreeNode* lowestCommonAncestor(TreeNode* root, vector<TreeNode*> &nodes) {
-	if (!root || std::find(nodes.begin(), nodes.end(), root) != nodes.end()) return root;
+	if (!root || find(nodes.begin(), nodes.end(), root) != nodes.end()) return root;
     TreeNode* left = lowestCommonAncestor(root->left, nodes);
     TreeNode* right = lowestCommonAncestor(root->right, nodes);
     if (left && right) return root;

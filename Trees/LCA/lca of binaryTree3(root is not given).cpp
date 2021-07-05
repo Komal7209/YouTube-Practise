@@ -2,14 +2,16 @@
 // root node is not given but below thing is given
 
 
+/*
+// Definition for a Node.
 class Node {
-    public int val;
-    public Node left;
-    public Node right;
-    public Node parent;
-}
-
-
+public:
+    int val;
+    Node* left;
+    Node* right;
+    Node* parent;
+};
+*/
 
 // if root node is not given then we could make separate fn for finding root and then use same lca fn
 /*
@@ -18,27 +20,23 @@ The difference from #236 is that we don't have access to root of the tree but we
 
 Another way is to store the paths of node to root for both the given nodes, reverse the paths & check for the first divergence.
 */
+
+
 class Solution {
-    public Node lowestCommonAncestor(Node p, Node q) {
-        Node tempNode = p; 
-        Node root = getRoot(tempNode);//can send either p or q, doesn't matter. Goal is to get root
-        //now since u have root, reuse #236
-        return findLCA(root,p,q);
-        
-    }
-    
-    private Node getRoot(Node p){
-        while(p.parent!=null){
-            p = p.parent;
+
+ private:
+     Node* getRoot(Node* p){
+        while(p->parent!=nullptr){
+            p = p->parent;
         }
         return p;
     }
     
     //exact same as #236
- private Node findLCA(Node root, Node p, Node q) {
+ Node* findLCA(Node* root, Node* p, Node* q) {
         
-        if(root==null){
-            return null;
+        if(!root){
+            return nullptr;
         }
         
         //if node is equal to either p or q, return the node as LCA.
@@ -47,25 +45,36 @@ class Solution {
         }
         
         //recurse on left & right subtree
-        Node left = findLCA(root.left, p, q);
-        Node right = findLCA(root.right, p, q);
+        Node* left = findLCA(root->left, p, q);
+        Node* right = findLCA(root->right, p, q);
         
         //if non-null is returned from both left & right subtrees, then the node
         //itself(root) is the LCA.
-        if(left!=null  && right != null){
+        if(left!=nullptr  && right != nullptr){
             return root;
         }
         
         //if null is returned from both subtrees, the node itself should return null.
-        if(left==null && right == null){
-            return null;
+        if(left==nullptr && right == nullptr){
+            return nullptr;
         }
         
         //if either of left or right subtree is non-null, return the non-null node.
-        return left!=null ? left:right;
+        return left!=nullptr ? left:right;
     }
-};
 
+
+    public:
+     Node* lowestCommonAncestor(Node* p, Node* q) {
+     Node* tempNode = p; 
+     Node* root = getRoot(tempNode);//can send either p or q, doesn't matter. Goal is to get root
+        //now since u have root, reuse #236
+        return findLCA(root,p,q);
+        
+    }
+    
+
+};
 
 /*
 C++ Two Solutions: One by Checking Parent with Set, Another by checking children
