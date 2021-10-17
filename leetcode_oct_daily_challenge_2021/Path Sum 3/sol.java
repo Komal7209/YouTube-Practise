@@ -7,7 +7,7 @@ class Solution{
             return count;
         }    
     
-    void recurse(TreeNode root, int sum, bool must)
+    void recurse(TreeNode root, int sum, boolean must)
         {
             if (root == null) return;
             if (root.val == sum) { count++; }
