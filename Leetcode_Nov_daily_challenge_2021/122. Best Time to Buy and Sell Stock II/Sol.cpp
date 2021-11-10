@@ -4,12 +4,12 @@ public:
         
         // as multiple transactions are allowed, so thats why we could add up variation subtractions together
         
-        int n = prices.size(), maxprofit = 0;
+        int days = prices.size(), maxprofit = 0;
         
-        for( int i =1; i<n; i++){
+        for( int day =1; day<days; day++){
             
-            if(prices[i]> prices[i-1])
-                maxprofit += prices[i] - prices[i-1];
+            if(prices[day]> prices[day-1])
+                maxprofit += prices[day] - prices[day-1];
             
         }     
         
