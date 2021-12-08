@@ -1,8 +1,8 @@
 class Solution {
 public:
   int rob(TreeNode* root) {
-    int robNotMax = 0;
-    return helper(root, robNotMax);
+    int withoutRoot = 0;
+    return helper(root, withoutRoot);
 }
 
 int helper(TreeNode* root, int& robNotMax)
