@@ -1,4 +1,4 @@
-// TC: O(n)
+// TC: O(n*w)
 // SC: O(1)
 
 class Solution {
