@@ -1,0 +1,15 @@
+class Solution {
+public:
+    TreeNode* trimBST(TreeNode* root, int low, int high) {
+        
+        if(root == NULL) return root;
+        if(root->val > high) return trimBST(root->left, low, high); // doing this so that we coukd get low values of tree so that we coukd lie in the specific range
+        if(root->val <low) return trimBST(root->right, low, high);
+        
+        root->left= trimBST(root->left, low, high);
+        root->right = trimBST(root->right, low, high);
+        return root;
+        
+        
+    }
+};
