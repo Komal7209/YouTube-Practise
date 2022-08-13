@@ -1,7 +1,7 @@
 class Solution
 {
 public:
-    vector findSubstring(string s, vector &words)
+    vector<int> findSubstring(string s, vector<string> &words)
     {
         int n = s.length(), num = words.size(), len = words[0].length();
         vector<int>indexes;
