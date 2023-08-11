@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        
+        sort(nums.begin(), nums.end());
         int n = nums.size();
         int left = 0, right = n-1; 
         
